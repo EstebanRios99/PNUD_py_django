@@ -1,3 +1,38 @@
-.jumbutron {
-    background-color: orange;
+.navbar a {
+    color: white;
+}
+
+.navbar {
+    background-color: #212529;
+}
+
+.jumbotron {
+    background-color: #1A5276;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.jumbotron h1 {
+    color: white;
+}
+
+.footer {
+    background-color: #1A5276;
+}
+
+.footer .row div {
+    color: white;
+}
+
+.footer .row div ul {
+    padding-left: 0px;
+}
+
+.footer .row div ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer .row div ul li a:hover {
+    color: black;
 }
