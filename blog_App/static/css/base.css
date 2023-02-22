@@ -36,3 +36,7 @@
 .footer .row div ul li a:hover {
     color: black;
 }
+
+#id_categories{
+    width: 100%;
+}
