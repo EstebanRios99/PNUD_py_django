@@ -1,2 +1,2 @@
 # PNUD_py_django
-Instalar: pip install crispy_forms
+Instalar: pip install django-widget-tweaks
