@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block title %}Noticias {% endblock %} {% block titleView %}Noticia{% endblock %} {% load static %} {% block content %}
+<div class="bg-secondary bg-gradient rounded-1 ">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-2">
+            <li class="breadcrumb-item" aria-current="page"><a href="/home">Inicio</a></li>
+            <li class="breadcrumb-item" aria-current="page"><a href="/news">News</a></li>
+            <li class="breadcrumb-item active text-light" aria-current="page">{{titleNews}}</li>
+        </ol>
+    </nav>
+</div>
+{% for new in news%}
+<div class="card mb-3">
+    <img src="../../../../{{new.image}}" class="card-img-top imgNewsItem" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{new.title}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{new.author}}</h6>
+        <p class="card-text">{{new.text}}</p>
+    </div>
+</div>
+{% endfor %} {% endblock %}

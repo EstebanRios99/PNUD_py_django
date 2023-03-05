@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% block title %}Noticias{% endblock %} {% block titleView %}Noticias{% endblock %} {% load static %} {% block content %}
+<div class="bg-secondary bg-gradient rounded-1 ">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-2">
+            <li class="breadcrumb-item" aria-current="page"><a href="/home">Inicio</a></li>
+            <li class="breadcrumb-item active text-light" aria-current="page">News</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="dropdown">
+    <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        Seleccione una Categoria
+      </button>
+    <ul class="dropdown-menu">
+        {% for category in categories %}
+        <li> <a href="{% url 'category' category.id %}"><button type="button" class="btn" style="width: 150px;">{{category.name}}</button></a></li>
+        {% endfor %}
+    </ul>
+</div>
+<br>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for new in news%}
+    <div class="col">
+        <div class="card h-100">
+            <img class="img-card" src="{{new.image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row justify-content-between">
+                        <div class="col-8">
+                            <h5 class="card-title">{{new.title}}</h5>
+                            <p class="card-text">{{new.author}}</p>
+                        </div>
+                        <div class="col-3 align-self-center">
+                            <a href="{% url 'newsitem' new.id %}" class="card-link">Leer</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

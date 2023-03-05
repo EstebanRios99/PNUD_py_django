@@ -6,8 +6,25 @@
     object-fit: contain;
 }
 
+.img-card {
+    height: 250px;
+}
+
+.card-body a {
+    text-decoration: none;
+    color: #1A5276;
+}
+
+.card-body a:hover {
+    text-decoration: none;
+    color: rgba(216, 144, 11, 0.897);
+}
+
 @media (max-width: 991.98px) {
     .carousel-inner {
+        height: auto;
+    }
+    .img-card {
         height: auto;
     }
 }

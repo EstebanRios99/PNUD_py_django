@@ -5,6 +5,7 @@ from django.contrib.auth import login, authenticate
 from django.views.generic import CreateView
 from .forms import NewForm, RegisterForm
 from django.contrib.auth.models import User
+from .models import news, category
 
 # Create your views here.
 def index(request): 
@@ -24,7 +25,8 @@ def index(request):
     return HttpResponse(contenido)
 
 def home(request): 
-    return render(request,'home.html')
+    noticias = news.objects.all()[:6]
+    return render(request,'home.html',{"news":noticias})
 
 
 def createNew(request):
@@ -42,6 +44,22 @@ def saveNew(request):
     
     return render(request, 'create_new.html', { 'form' : form, 'message' : 'ok'})
 
+def newsView(request): 
+    dt_category=category.objects.all()
+    dt_noticias = news.objects.all()
+    return render(request,'newsindex.html',{"news":dt_noticias, "categories":dt_category})
+
+def newsView_filter(request, category_id): 
+    dt_category=category.objects.get(id=category_id)
+    dt_noticias = news.objects.filter(categories=dt_category)
+    return render(request,'newscategory.html',{"news":dt_noticias, "categories":dt_category})
+
+def newsView_item(request, news_id): 
+    titleNews=""
+    dt_noticias = news.objects.filter(id=news_id)
+    titleNews=dt_noticias[0]
+    return render(request,'newsitem.html',{"news":dt_noticias,"titleNews":titleNews})
+
 class RegisterView(CreateView):
     model = User
     form_class = RegisterForm
@@ -55,4 +73,3 @@ class RegisterView(CreateView):
         usuario = authenticate(username=usuario, password=password)
         login(self.request, usuario)
         return redirect('home')
-    

@@ -16,6 +16,15 @@
     color: white;
 }
 
+.breadcrumb li a {
+    text-decoration: none;
+    color: black;
+}
+
+.imgNewsItem {
+    height: 650px;
+}
+
 .footer {
     background-color: #1A5276;
 }
@@ -39,4 +48,10 @@
 
 #id_categories {
     width: 100%;
+}
+
+@media (max-width: 991.98px) {
+    .imgNewsItem {
+        height: auto;
+    }
 }
