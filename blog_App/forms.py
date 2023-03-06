@@ -87,6 +87,6 @@ class NewForm(forms.ModelForm):
         'placeholder': 'Contenido',
         'rows': 4
     }))
-    image = forms.ImageField(label='Imagen:', widget=forms.ClearableFileInput(attrs={
-        'class': 'form-control',
+    image = forms.ImageField(required=False ,label='Imagen:', widget=forms.ClearableFileInput(attrs={
+        'class': 'form-control'
     }))
