@@ -23,53 +23,67 @@
             <span class="navbar-toggler-icon"></span>
           </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-                    <a class="nav-link" href="#"></a>
-                    <a class="nav-link" href="#">Noticias</a>
+                <div class="container-fluid">
+                    <div class="row justify-content-between">
+                        <div class="col-2">
+                            <div class="navbar-nav">
+                                <a class="nav-link active" aria-current="page" href="/home">Inicio</a>
+                                <a class="nav-link" href="/news">Noticias</a>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class=" navbar-nav ">
+                                {% if user.is_authenticated %}
+                                <a class="nav-link " href="/admin/">Bienvenido</a> {% else %}
+                                <a class="nav-link " href="/login">Iniciar Sesion</a>
+                                <a class="nav-link " href="#">/</a>/
+                                <a class="nav-link " href="/register">Registrar</a> {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
     <div class="jumbotron ">
-        <h1 class="text-center ">Bienvenido</h1>
+        <h1 class="text-center ">{% block titleView %} {% endblock %}</h1>
     </div>
     <div class="container ">
         <br> {% block content %} {% endblock %}
     </div>
     <hr>
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm d-flex flex-column">
-                    <div class="container">
+    <footer class="footer ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-sm d-flex flex-column ">
+                    <div class="container ">
                         <p>
-                            <h4 class="text-center">Contactanos</h4>
+                            <h4 class="text-center ">Contactanos</h4>
                             <ul>
-                                <li class="list-group-item">Quito 0000, Iñaquito, Ecuador</li>
-                                <li class="list-group-item">+594999999999</li>
-                                <li class="list-group-item">example@hotel.com</li>
+                                <li class="list-group-item ">Quito 0000, Iñaquito, Ecuador</li>
+                                <li class="list-group-item ">+594999999999</li>
+                                <li class="list-group-item ">example@hotel.com</li>
                             </ul>
                         </p>
                     </div>
                 </div>
-                <div class="col-sm d-flex flex-column">
-                    <div class="container">
+                <div class="col-sm d-flex flex-column ">
+                    <div class="container ">
                         <p>
-                            <h4 class="text-center">Sobre Nosotros</h4>
-                            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc efficitur nibh eu finibus efficitur. Nullam dui dolor, porta eget libero ac, ultrices pretium nisi.
+                            <h4 class="text-center ">Sobre Nosotros</h4>
+                            <p class="text-center ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc efficitur nibh eu finibus efficitur. Nullam dui dolor, porta eget libero ac, ultrices pretium nisi.
                             </p>
                         </p>
                     </div>
                 </div>
-                <div class="col-sm d-flex flex-column">
-                    <div class="container">
+                <div class="col-sm d-flex flex-column ">
+                    <div class="container ">
                         <p>
-                            <h4 class="text-center">Acuerdos</h4>
+                            <h4 class="text-center ">Acuerdos</h4>
                             <ul>
-                                <li class="list-group-item"><a href="#" class="link">Política de privacidad</a></li>
-                                <li class="list-group-item"><a href="#" class="link">Aviso legal</a></li>
-                                <li class="list-group-item"><a href="#" class="link">Cookies</a></li>
+                                <li class="list-group-item "><a href="# " class="link ">Política de privacidad</a></li>
+                                <li class="list-group-item "><a href="# " class="link ">Aviso legal</a></li>
+                                <li class="list-group-item "><a href="# " class="link ">Cookies</a></li>
                             </ul>
                         </p>
                     </div>
