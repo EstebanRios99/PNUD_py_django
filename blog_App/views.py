@@ -40,16 +40,19 @@ def saveNew(request):
         new.author = request.user
         new.published_date = timezone.now()
         new.save()
+        for cat in request.POST['categories']:
+            dt_category=category.objects.get(id=cat)
+            new.categories.add(dt_category)
         form = NewForm()
     
-    return render(request, 'create_new.html', { 'form' : form, 'message' : 'ok'})
+    return redirect('newsView')
 
 def newsView(request): 
     dt_category=category.objects.all()
     dt_noticias = news.objects.all()
     return render(request,'newsindex.html',{"news":dt_noticias, "categories":dt_category})
 
-def newsView_filter(request, category_id): 
+def newsView_filter(request, category_id):
     dt_category=category.objects.get(id=category_id)
     dt_noticias = news.objects.filter(categories=dt_category)
     return render(request,'newscategory.html',{"news":dt_noticias, "categories":dt_category})
