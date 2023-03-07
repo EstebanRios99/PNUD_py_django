@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import news
+from .models import news, category
 class RegisterForm(UserCreationForm):
 
     first_name = forms.CharField(
@@ -87,6 +87,9 @@ class NewForm(forms.ModelForm):
         'placeholder': 'Contenido',
         'rows': 4
     }))
-    image = forms.ImageField(required=False ,label='Imagen:', widget=forms.ClearableFileInput(attrs={
-        'class': 'form-control'
+    image = forms.ImageField(required=False, label='Imagen:', widget=forms.ClearableFileInput(attrs={
+        'class': 'form-control',
+    }))
+    categories = forms.ModelMultipleChoiceField(queryset=category.objects.all(), label='Categorias:', widget=forms.SelectMultiple(attrs={
+        'class': 'form-control',
     }))

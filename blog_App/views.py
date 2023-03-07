@@ -35,14 +35,13 @@ def createNew(request):
 
 def saveNew(request):
     form = NewForm(request.POST, request.FILES)
+
     if form.is_valid():
         new = form.save(commit=False)
         new.author = request.user
         new.published_date = timezone.now()
         new.save()
-        for cat in request.POST['categories']:
-            dt_category=category.objects.get(id=cat)
-            new.categories.add(dt_category)
+        form.save_m2m()
         form = NewForm()
     
     return redirect('newsView')
