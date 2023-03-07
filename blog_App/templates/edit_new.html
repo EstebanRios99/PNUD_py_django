@@ -14,11 +14,6 @@
                 {% endif %}
                 <form method="POST" class="post-form" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {% if message %}
-                        <div class="alert alert-success" role="alert">
-                            Noticia Creada Correctamente
-                        </div>
-                    {% endif %}
                     {% for field in form %}
                     <div class="mb-3">
                         <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
