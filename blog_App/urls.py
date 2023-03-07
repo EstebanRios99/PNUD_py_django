@@ -9,11 +9,11 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('home', views.home, name='home'),
     # Noticias
-    path('create/new', views.createNew, name='create_new'),
-    path('save/new', views.saveNew, name='saveNew'),
     path('news', views.newsView, name='newsView'),
     path('news/category/<int:category_id>/', views.newsView_filter, name="category"),
     path('news/newsitem/<int:news_id>/', views.newsView_item, name="newsitem"),
+    path('create/new', views.createNew, name='create_new'),
+    path('update/new/<int:news_id>', views.updateNew, name='update_new'),
     # Usuarios
     path('login', LoginView.as_view(),name='login'),
     path('logout', LogoutView.as_view(),name='logout'),

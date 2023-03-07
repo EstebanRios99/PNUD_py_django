@@ -1,5 +1,5 @@
 from django.utils import timezone
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
 from django.views.generic import CreateView
@@ -30,21 +30,32 @@ def home(request):
 
 
 def createNew(request):
-    form = NewForm()
-    return render(request, 'create_new.html', {'form': form})
-
-def saveNew(request):
-    form = NewForm(request.POST, request.FILES)
-
-    if form.is_valid():
-        new = form.save(commit=False)
-        new.author = request.user
-        new.published_date = timezone.now()
-        new.save()
-        form.save_m2m()
+    if request.method == "POST":
+        form = NewForm(request.POST, request.FILES)
+        if form.is_valid():
+            new = form.save(commit=False)
+            new.author = request.user
+            new.published_date = timezone.now()
+            new.save()
+            form.save_m2m()
+            return redirect('newsView')
+    else:
         form = NewForm()
-    
-    return redirect('newsView')
+        return render(request, 'create_new.html', {'form': form})
+
+def updateNew(request, news_id):
+    new = get_object_or_404(news, id=news_id)
+    if request.method == "POST":
+        form = NewForm(request.POST, request.FILES, instance=new)
+        if form.is_valid():
+            form.author = request.user
+            form.published_date = timezone.now()
+            form.save()
+            form = NewForm()
+            return redirect('newsView')
+    else:
+        form = NewForm(instance=new)
+        return render(request, 'edit_new.html', {'form': form})
 
 def newsView(request): 
     dt_category=category.objects.all()
