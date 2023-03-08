@@ -34,9 +34,11 @@
                         <div class="col-3 align-self-center">
                             <a href="{% url 'newsitem' new.id %}" class="card-link">Leer</a>
                         </div>
+                        {% if user.is_authenticated %}
                         <div class="col-3 align-self-center">
                             <a href="{% url 'update_new' new.id %}" class="card-link">Editar</a>
                         </div>
+                        {% endif %}
                     </div>
 
                 </div>
