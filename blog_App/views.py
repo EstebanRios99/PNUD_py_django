@@ -34,6 +34,8 @@ def createNew(request):
         form = NewForm(request.POST, request.FILES)
         if form.is_valid():
             new = form.save(commit=False)
+            if  not request.POST['image']:
+                new.image = 'blog/noticia_defecto.jpg'
             new.author = request.user
             new.published_date = timezone.now()
             new.save()
@@ -48,9 +50,10 @@ def updateNew(request, news_id):
     if request.method == "POST":
         form = NewForm(request.POST, request.FILES, instance=new)
         if form.is_valid():
-            form.author = request.user
-            form.published_date = timezone.now()
-            form.save()
+            if  not request.POST['image']:
+                new.image = 'blog/noticia_defecto.jpg'
+            new.author = request.user
+            new.save()
             form = NewForm()
             return redirect('newsView')
     else:
