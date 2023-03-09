@@ -13,7 +13,14 @@
                         <label for="{{ field.name }}" class="form-label">{{ field.label }}</label> {% render_field field class="form-control" %}
                     </div>
                     {% endfor %}
-                    <button type="submit" class="btn btn-primary">Registrar</button>
+                    {% if form.errors %}
+                    <ul>
+                        {% for error in  form.non_field_errors %}
+                            <li style="color: #ff0000">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                 </form>
             </div>
         </div>

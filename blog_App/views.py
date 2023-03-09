@@ -41,6 +41,8 @@ def createNew(request):
             new.save()
             form.save_m2m()
             return redirect('newsView')
+        else:
+            return render(request, 'create_new.html', {'form': form})
     else:
         form = NewForm()
         return render(request, 'create_new.html', {'form': form})
@@ -56,6 +58,8 @@ def updateNew(request, news_id):
             new.save()
             form = NewForm()
             return redirect('newsView')
+        else:
+            return render(request, 'create_new.html', {'form': form})
     else:
         form = NewForm(instance=new)
         return render(request, 'edit_new.html', {'form': form})
@@ -80,7 +84,6 @@ class RegisterView(CreateView):
     model = User
     form_class = RegisterForm
     template_name = "register.html"
-
 
     def form_valid(self, form):
         form.save()
