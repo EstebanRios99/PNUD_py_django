@@ -19,6 +19,13 @@
                         <label for="{{ field.name }}" class="form-label">{{ field.label }}</label>
                         {% render_field field class="form-control" %}
                       </div>
+                      {% if field.errors %}
+                      <ul>
+                        {% for error in field.errors %}
+                            <li style="color: #ff0000">{{ error }}</li>
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
                     {% endfor %}
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </form>
