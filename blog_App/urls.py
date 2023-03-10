@@ -14,6 +14,7 @@ urlpatterns = [
     path('news/newsitem/<int:news_id>/', views.newsView_item, name="newsitem"),
     path('create/new', views.createNew, name='create_new'),
     path('update/new/<int:news_id>', views.updateNew, name='update_new'),
+    path('delete/new/<int:news_id>', views.deleteNew, name='delete_new'),
     # Usuarios
     path('login', LoginView.as_view(),name='login'),
     path('logout', LogoutView.as_view(),name='logout'),

@@ -34,7 +34,7 @@ def createNew(request):
         form = NewForm(request.POST, request.FILES)
         if form.is_valid():
             new = form.save(commit=False)
-            if  not request.POST['image']:
+            if  request.POST.get('image', False):
                 new.image = 'blog/noticia_defecto.jpg'
             new.author = request.user
             new.published_date = timezone.now()
@@ -52,7 +52,7 @@ def updateNew(request, news_id):
     if request.method == "POST":
         form = NewForm(request.POST, request.FILES, instance=new)
         if form.is_valid():
-            if  not request.POST['image']:
+            if  request.POST.get('image', False):
                 new.image = 'blog/noticia_defecto.jpg'
             new.author = request.user
             new.save()
@@ -80,6 +80,10 @@ def newsView_item(request, news_id):
     titleNews=dt_noticias[0]
     return render(request,'newsitem.html',{"news":dt_noticias,"titleNews":titleNews})
 
+def deleteNew(request, news_id):
+    new = get_object_or_404(news, id=news_id)
+    new.delete()
+    return redirect('newsView')
 class RegisterView(CreateView):
     model = User
     form_class = RegisterForm
