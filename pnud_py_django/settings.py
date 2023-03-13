@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog_App',
     'widget_tweaks',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -109,6 +110,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -135,7 +144,6 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'blog_App/static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = reverse_lazy('home')
-
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
 LOGIN_URL = 'login'

@@ -1,11 +1,14 @@
 from django.utils import timezone
 from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.views.generic import CreateView
 from .forms import NewForm, RegisterForm
 from django.contrib.auth.models import User
 from .models import news, category
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordChangeView, PasswordResetDoneView
+from rest_framework import viewsets, serializers, permissions
 
 # Create your views here.
 def index(request): 
@@ -59,7 +62,7 @@ def updateNew(request, news_id):
             form = NewForm()
             return redirect('newsView')
         else:
-            return render(request, 'create_new.html', {'form': form})
+            return render(request, 'edit_new.html', {'form': form})
     else:
         form = NewForm(instance=new)
         return render(request, 'edit_new.html', {'form': form})
@@ -96,3 +99,41 @@ class RegisterView(CreateView):
         usuario = authenticate(username=usuario, password=password)
         login(self.request, usuario)
         return redirect('home')
+
+class MyPasswordChangeView(PasswordChangeView):
+    template_name='registration/password_change.html'
+    success_url=reverse_lazy('password_change_done')
+
+class MyPasswordChangeDoneView(PasswordResetDoneView):
+    template_name='registration/password_change_done.html'
+
+# API Views
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class NewSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = news
+        fields = ['title', 'text', 'image', 'categories', 'author']
+
+class NewViewSet(viewsets.ModelViewSet):
+    queryset = news.objects.all()
+    serializer_class = NewSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = category
+        fields = ['name']
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = category.objects.all()
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticated]
