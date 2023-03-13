@@ -3,10 +3,8 @@
 DJANGO / PYTHON
 1. Ejecución
 
-   - Pasos para instalar 
-    
+   - Pasos para instalar    
      - Instalar Postgres
-
         1.1 Clonar el proyecto
 
         1.2 Configurar .env
