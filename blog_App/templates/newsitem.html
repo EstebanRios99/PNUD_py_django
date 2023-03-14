@@ -3,7 +3,11 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb p-2">
             <li class="breadcrumb-item" aria-current="page"><a href="/home">Inicio</a></li>
+            {% if user.is_authenticated %}
+            <li class="breadcrumb-item" aria-current="page"><a href="/news/table">News</a></li>
+            {% else %}
             <li class="breadcrumb-item" aria-current="page"><a href="/news">News</a></li>
+            {% endif %}
             <li class="breadcrumb-item active text-light" aria-current="page">{{titleNews}}</li>
         </ol>
     </nav>
@@ -16,5 +20,15 @@
         <h6 class="card-subtitle mb-2 text-muted">{{new.author}}</h6>
         <p class="card-text">{{new.text}}</p>
     </div>
+    {% if user.is_authenticated %}
+    <div class="card-footer">
+        <div class="d-flex justify-content-end">
+            <div>
+                <a href="{% url 'update_new' new.id %}" class="btn btn-outline-primary">Editar</a>
+                <a href="{% url 'delete_new' new.id %}" class="btn btn-outline-danger">Eliminar</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
 {% endfor %} {% endblock %}
