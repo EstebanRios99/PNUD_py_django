@@ -32,7 +32,12 @@
       <span class="visually-hidden ">Next</span>
     </button>
 </div>
-<br> {% if user.is_authenticated %} Hola {% else %}
+<br> {% if user.is_authenticated %}
+<div>
+    <h1 class="text-center">¿Tienes nuevas Noticias?</h1>
+    <h2 class="text-center">{{user.first_name}} {{user.last_name}}</h2>
+</div>
+{% else %}
 <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for new in news%}
     <div class="col">
