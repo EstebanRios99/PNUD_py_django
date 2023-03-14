@@ -1,13 +1,12 @@
 # PNUD_py_django
 
-DJANGO / PYTHON
-1. Ejecución
-
+##DJANGO / PYTHON
+***
+1. Ejecución del proyecto
    - Pasos para instalar    
-     - Instalar Postgres
-        1.1 Clonar el proyecto
-
-        1.2 Configurar .env
+     - Instalar PostgreSQL
+     - Clonar el proyecto
+     - Configurar .env
 
     2. Ejecutar los siguientes comandos:
 
