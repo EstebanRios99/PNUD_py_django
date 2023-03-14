@@ -43,7 +43,7 @@ def createNew(request):
             new.published_date = timezone.now()
             new.save()
             form.save_m2m()
-            return redirect('newsView')
+            return redirect('news_table')
         else:
             return render(request, 'create_new.html', {'form': form})
     else:
@@ -60,7 +60,7 @@ def updateNew(request, news_id):
             new.author = request.user
             new.save()
             form = NewForm()
-            return redirect('newsView')
+            return redirect('news_table')
         else:
             return render(request, 'edit_new.html', {'form': form})
     else:
@@ -86,7 +86,19 @@ def newsView_item(request, news_id):
 def deleteNew(request, news_id):
     new = get_object_or_404(news, id=news_id)
     new.delete()
-    return redirect('newsView')
+    return redirect('news_table')
+
+def newsTable(request):
+    dt_category=category.objects.all()
+    dt_noticias = news.objects.filter(author_id=request.user.id)
+    return render(request,'news_table.html',{"news":dt_noticias, "categories":dt_category})
+
+def newsTable_Filter(request, category_id):
+    dt_categories=category.objects.all()
+    dt_category=category.objects.get(id=category_id)
+    dt_noticias = news.objects.filter(author_id=request.user.id).filter(categories=dt_category)
+    return render(request,'news_table.html',{"news":dt_noticias, "categories":dt_categories})
+
 class RegisterView(CreateView):
     model = User
     form_class = RegisterForm
