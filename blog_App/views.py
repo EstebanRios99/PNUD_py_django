@@ -28,7 +28,7 @@ def createNew(request):
         form = NewForm(request.POST, request.FILES)
         if form.is_valid():
             new = form.save(commit=False)
-            if  request.POST.get('image', False):
+            if  not  request.POST.get('image'):
                 new.image = 'blog/noticia_defecto.jpg'
             new.author = request.user
             new.published_date = timezone.now()
@@ -49,7 +49,7 @@ def updateNew(request, news_id):
     if request.method == "POST":
         form = NewForm(request.POST, request.FILES, instance=new)
         if form.is_valid():
-            if  request.POST.get('image', False):
+            if  not request.POST.get('image'):
                 new.image = 'blog/noticia_defecto.jpg'
             new.author = request.user
             new.save()
