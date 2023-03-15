@@ -1,0 +1,95 @@
+{% extends "base.html" %} {% block title %}Noticias{% endblock %} 
+{% block titleView %}Administrar Noticias{% endblock %} 
+{% load static %} {% block content %}
+<div class="dropdown">
+  <button
+    class="btn btn-dark dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+  >
+    Seleccione una Categoria
+  </button>
+  <ul class="dropdown-menu">
+    {% for category in categories %}
+    <li>
+      <a href="{% url 'news_tableCategory' category.id %}"
+        ><button type="button" class="btn" style="width: 150px">
+          {{category.name}}
+        </button></a
+      >
+    </li>
+    {% endfor %}
+    <li>
+      <a href="{% url 'news_table' %}"
+        ><button type="button" class="btn" style="width: 150px">
+          Todos
+        </button></a
+      >
+    </li>
+  </ul>
+</div>
+<br />
+<table class="table table-striped table-bordered" id="registers">
+<thead>
+    <tr>
+    <th scope="col">Titulo</th>
+    <th scope="col">Autor</th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    </tr>
+</thead>
+<tbody>
+    {% for new in news%}
+    <tr>
+    <td>{{new.title}}</td>
+    <td>{{new.author}}</td>
+    <td>
+        <a
+        href="{% url 'newsitem' new.id %}"
+        class="btn btn-outline-success"
+        >Leer</a
+        >
+    </td>
+    <td>
+        <a
+        href="{% url 'update_new' new.id %}"
+        class="btn btn-outline-primary"
+        >Editar</a
+        >
+    </td>
+    <td>
+        <a
+        href="{% url 'delete_new' new.id %}"
+        class="btn btn-outline-danger"
+        >Eliminar</a
+        >
+    </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+<script>
+  $("#registers").DataTable({
+    language: {
+      emptyTable: "No hay información",
+      info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+      infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+      infoFiltered: "(Filtrado de _MAX_ total entradas)",
+      lengthMenu: "Mostrar _MENU_ Entradas",
+      loadingRecords: "Cargando...",
+      processing: "Procesando...",
+      search: "Buscar en Todos:",
+      zeroRecords: "Sin resultados encontrados",
+      paginate: {
+        first: "Primero",
+        last: "Ultimo",
+        next: "Siguiente",
+        previous: "Anterior",
+      },
+    },
+      responsive: true,
+      autoWidth: false
+  });
+</script>
+{% endblock %}
