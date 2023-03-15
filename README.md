@@ -24,6 +24,7 @@ Para que el proyecto funcione correctamente se deben seguir los siguientes pasos
    * pip install django-environ
    * pip install django-environment
    * pip install djangorestframework
+   * pip install docutils
 
 **4.** Crear la Base de Datos con el nombre **news**:
 
@@ -34,7 +35,7 @@ Para que el proyecto funcione correctamente se deben seguir los siguientes pasos
 **6.** Crear un super-usuario, ejecutar el comando:
    * py manage.py createsuperuser
    
-**7.** Cargar los archivos .dbf que se encuentra en la carpeta *documentos* en la Base de Datos.
+**7.** Cargar los archivos .dbf en la Base de Datos que se encuentra en la carpeta *documentos*.
 
 ## Estructura del proyecto
 ***
@@ -52,10 +53,20 @@ Para que el proyecto funcione correctamente se deben seguir los siguientes pasos
     * Vista **create_new.html** formulario para crear noticias
     * Vista **edit_new.html** formulario para editar noticias
     * Vista **home.html** se muestra como página de inicio del proyecto
+    * Vista **news_table.html** se muestra al iniciar sesión con un usuario registrado, presenta una tabla para administrar las noticias.
     * Vista **newscategory.html** se muestran las noticias con filtro de acuerdo a la categoría
     * Vista **newsindex.html** se muestra al presionar "Noticias" en el menú principal, se presentan todas las noticias
     * Vista **newsitem.html** se muestra al presionar "Leer más" en las tarjetas de noticias para poder visualizar el contenido de cada noticia
     * Vista **register.html** se muestra al presionar "Registrar" en el menú principal, se usa para registrar un usuario nuevo
+  * Archivo **admin.py** donde se realiza la configuración de los modelos para el admin de Django.
+  * Archivo **forms.py** donde se encuentran los formularios utilizados en la aplicación.
+  * Archivo **models.py** donde se encuentran los modelos que se utilizarán en la aplicación.
+  * Archivo **urls.py** donde se encuentra configurado cada una de las rutas que usa la aplicación.
+  * Archivo **views.py** donde se encuentra cada una de las vistas para cada una de las funcionalidades de la aplicación.
+* Carpeta **blog_App** 
+  * Archivo **.env.example** donde se encuentra un ejemplo del archivo .env para la respectiva configuración
+  * Archivo **settings.py** donde se encuentra la configuración principal del proyecto.
+  * Archivo **urls.py** donde se encuentran las rutas principales que va a utilizar la aplicación.
 
 ## Integrantes y Descripción del proyecto
 ***

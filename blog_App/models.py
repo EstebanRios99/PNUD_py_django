@@ -4,6 +4,9 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class category(models.Model):
+    """
+    In this model are the categories to create the new news.
+    """
     name=models.CharField(max_length=60)
     created=models.DateTimeField(auto_now_add=True)
     updated=models.DateTimeField(auto_now_add=True)
@@ -16,6 +19,10 @@ class category(models.Model):
         return self.name
 
 class news(models.Model):
+    """
+    The news created in the application are saved in this model.
+    Title, text and category are required.
+    """
     title=models.CharField(max_length=60)
     text = models.TextField()
     image=models.ImageField(upload_to='blog',null=True,blank=True)
