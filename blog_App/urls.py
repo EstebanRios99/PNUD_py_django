@@ -11,7 +11,7 @@ router.register('news', NewViewSet)
 router.register('category-detail', CategoryViewSet)
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.home, name='index'),
     path('home', views.home, name='home'),
     # Noticias
     path('news', views.newsView, name='newsView'),
