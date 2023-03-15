@@ -35,7 +35,7 @@ Para que el proyecto funcione correctamente se deben seguir los siguientes pasos
 **6.** Crear un super-usuario, ejecutar el comando:
    * py manage.py createsuperuser
    
-**7.** Cargar los archivos .dbf en la Base de Datos que se encuentra en la carpeta *documentos*.
+**7.** Cargar los archivos .sql en la Base de Datos que se encuentra en la carpeta *documentos*.
 
 ## Estructura del proyecto
 ***
