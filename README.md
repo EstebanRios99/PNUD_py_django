@@ -73,7 +73,7 @@ Para que el proyecto funcione correctamente se deben seguir los siguientes pasos
 La aplicación *blog de noticias* permite crear diferentes noticias, en las cuales un usuario puede publicar su punto de vista y algunas novedades sobre un tema de interés público.
 
 **Integrantes:**
-* Esteban Ríos
+* Esteban Rios
 * Alex Ortiz
 
 
